@@ -5,4 +5,8 @@ import torch
 import jieba
 import tqdm
 
-print("ok")
+test_data = pandas.read_csv('data/SentimentData.csv')
+print(test_data.head())
+print(test_data.columns)
+print(test_data.shape)
+print(test_data["label"].value_counts())
