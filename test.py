@@ -6,16 +6,16 @@ import jieba as jb
 import tqdm
 
 def PrintCSV() -> None:
-    test_data = pandas.read_csv('data/SentimentData.csv')
+    test_data = pandas.read_csv('data/sentiment_data.csv')
     print(test_data.head())
     print(test_data.columns)
     print(test_data.shape)
     print(test_data["label"].value_counts())
 
 def CutVocabulary() -> None:
-    test_data = pandas.read_csv('data/SentimentData.csv')
+    test_data = pandas.read_csv('data/sentiment_data.csv')
     print(test_data.loc[1:3, "text":"label"])
 
-t = pd.read_csv('data/SentimentData.csv')
+t = pd.read_csv('data/sentiment_data.csv')
 for i in t["text"]:
     print(list(jb.cut(str(i))))
