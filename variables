@@ -6,3 +6,6 @@ train_padded_list list 转成数字的训练集
 train_label_list list 训练集的label
 predict_padded_list 转成数字的预测集
 predict_label_list 预测集的label
+
+for copy:
+vocab, word_frq, train_size, train_padded_list, train_label_list, predict_padded_list, predict_label_list = load_set()
