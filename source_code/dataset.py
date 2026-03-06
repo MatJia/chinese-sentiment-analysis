@@ -58,6 +58,7 @@ def word_to_num(text: list, tar_len: int, vocab: dict) -> list:
     for sentence in text:
         words_list = [x for x in list(jb.cut(sentence)) if x.strip() != ""]
         len_word = len(words_list)
+        words_list = words_list[:tar_len]
         for i in range(tar_len):
             if i < len_word:
                 words_list[i] = vocab.get(words_list[i], vocab["Unknown"])
@@ -79,3 +80,7 @@ def load_set():
     predict_padded_list = padded_list[train_size:]
     predict_label_list = label_list[train_size:]
     return vocab, word_frq, train_size, train_padded_list, train_label_list, predict_padded_list, predict_label_list
+
+if __name__ == "__main__":
+    vocab, word_frq, train_size, train_padded_list, train_label_list, predict_padded_list, predict_label_list = load_set()
+    print(train_padded_list)
