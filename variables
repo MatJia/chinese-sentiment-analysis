@@ -1,0 +1,8 @@
+dataset.py: (from load_set())
+vocab dict 记录中文词语对应数字
+word_frq dict 记录中文词语出现频率
+train_size int 记录训练集规模
+train_padded_list list 转成数字的训练集
+train_label_list list 训练集的label
+predict_padded_list 转成数字的预测集
+predict_label_list 预测集的label

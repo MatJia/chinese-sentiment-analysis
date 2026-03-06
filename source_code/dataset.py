@@ -67,7 +67,7 @@ def word_to_num(text: list, tar_len: int, vocab: dict) -> list:
     #print(tar_list)
     return tar_list
 
-if __name__ == "__main__":
+def load_set():
     csv_source = pd.read_csv('../data/sentiment_data.csv')
     label_list = csv_source["label"].tolist()
     vocab, word_frq = set_dictionary(csv_source["text"].tolist(),1)
@@ -78,3 +78,4 @@ if __name__ == "__main__":
     train_label_list = label_list[:train_size]
     predict_padded_list = padded_list[train_size:]
     predict_label_list = label_list[train_size:]
+    return vocab, word_frq, train_size, train_padded_list, train_label_list, predict_padded_list, predict_label_list
