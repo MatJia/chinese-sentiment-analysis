@@ -53,7 +53,28 @@ def get_padding_len(text_origin: list, predict_padding_line: int) -> int:
         count.append(count_words)
     return int(np.percentile(count,95) + 1)
 
+def word_to_num(text: list, tar_len: int, vocab: dict) -> list:
+    tar_list = []
+    for sentence in text:
+        words_list = [x for x in list(jb.cut(sentence)) if x.strip() != ""]
+        len_word = len(words_list)
+        for i in range(tar_len):
+            if i < len_word:
+                words_list[i] = vocab.get(words_list[i], vocab["Unknown"])
+            else:
+                words_list.append(vocab["Empty"])
+        tar_list.append(words_list)
+    #print(tar_list)
+    return tar_list
+
 if __name__ == "__main__":
     csv_source = pd.read_csv('../data/sentiment_data.csv')
+    label_list = csv_source["label"].tolist()
     vocab, word_frq = set_dictionary(csv_source["text"].tolist(),1)
     padding_len = get_padding_len(csv_source["text"].tolist(), 7)
+    padded_list = word_to_num(csv_source["text"].tolist(), padding_len, vocab)
+    train_size = int(len(padded_list) * 0.8)
+    train_padded_list = padded_list[:train_size]
+    train_label_list = label_list[:train_size]
+    predict_padded_list = padded_list[train_size:]
+    predict_label_list = label_list[train_size:]
